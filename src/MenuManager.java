@@ -39,6 +39,7 @@ public class MenuManager {
 		int SEId= input.nextInt();
 		System.out.print("Sports Equipment name : ");
 		String SEName= input.next();
+		String buf = input.nextLine();
 		System.out.print("Email address : ");
 		String SEEmail= input.next();
 		System.out.print("Phone number : ");
