@@ -5,7 +5,7 @@ public class MenuManager {
 		Scanner input = new Scanner (System.in);
 		SportsEquipmentManager sportsequipmentManager = new SportsEquipmentManager(input);
 		
-		int num = -1;
+		int num = -11;
 		while (num != 5) {
 			System.out.println("----SportsEquipment Management System Menu----");
 			System.out.println("1. Add SportsEquipment");
