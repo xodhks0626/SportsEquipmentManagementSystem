@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import sportsequipment.ChestSportsEquipment;
+import sportsequipment.SportsEquipment;
+
 public class SportsEquipmentManager {
 	ArrayList<SportsEquipment> sportsequipments = new ArrayList<SportsEquipment>();
 	Scanner input;
@@ -10,24 +13,36 @@ public class SportsEquipmentManager {
 	}
 
 	public void addsportsequipment() {
-		SportsEquipment sportsequipment = new SportsEquipment();
-		System.out.print("Sports Equipment ID : ");
-		sportsequipment.id = input.nextInt();
-		System.out.print("Sports Equipment name : ");
-		sportsequipment.name= input.next();
-		String buf = input.nextLine();
-		System.out.print("Email address : ");
-		sportsequipment.email= input.next();
-		System.out.print("Phone number : ");
-		sportsequipment.phone= input.next();
-		sportsequipments.add(sportsequipment);
+		int kind = 0;
+		SportsEquipment sportsequipment;
+		while (kind != 1 && kind !=2) {
+			System.out.println("1. for arms sportsequipment");
+			System.out.println("2. for chest sportsequipment");
+			System.out.print("Select num for SportsEquipment Kind between 1 and 2 : ");
+			kind = input.nextInt();
+			if(kind == 1) {
+				sportsequipment = new SportsEquipment();
+				sportsequipment.getUserInput(input);
+				sportsequipments.add(sportsequipment);
+				break;
+			}
+			else if (kind == 2) {
+				sportsequipment = new ChestSportsEquipment();
+				sportsequipment.getUserInput(input);
+				sportsequipments.add(sportsequipment);
+				break;
+			}
+			else {
+				System.out.print("Select num for SportsEquipment Kind between 1 and 2 : ");
+			}
+		}
 	}
 	public void deletesportsequipment() {
 		System.out.print("Sports Equipment ID : ");
 		int SEId= input.nextInt();
 		int index = -1;
 		for(int i = 0; i < sportsequipments.size(); i++) {
-			if (sportsequipments.get(i).id == SEId) {
+			if (sportsequipments.get(i).getId() == SEId) {
 				index = i;
 				break;
 			}
@@ -35,7 +50,6 @@ public class SportsEquipmentManager {
 		
 		if(index >= 0) {
 			sportsequipments.remove(index);
-			SportsEquipment.numSportsEquipmnetRegistered--;
 			System.out.println("the sportsequipment " + SEId +  " is deleted");
 		}
 		else {
@@ -49,7 +63,7 @@ public class SportsEquipmentManager {
 		int SEId= input.nextInt();
 		for(int i = 0; i < sportsequipments.size(); i++) {
 			SportsEquipment sportsequipment = sportsequipments.get(i);
-			if (sportsequipment.id == SEId) {
+			if (sportsequipment.getId() == SEId) {
 				int num = -11;
 				while (num != 5) {
 					System.out.println("** SportsEquipment Info Edit Menu **");
@@ -62,19 +76,23 @@ public class SportsEquipmentManager {
 					num = input.nextInt();
 					if (num == 1) {
 						System.out.print("Sports Equipment ID : ");
-						sportsequipment.id = input.nextInt();
+						int id = input.nextInt();
+						sportsequipment.setId(id);
 					}
 					else if (num == 2) {
 						System.out.print("Sports Equipment name : ");
-						sportsequipment.name= input.next();
+						String name= input.next();
+						sportsequipment.setName(name);
 					}
 					else if (num == 3) {
 						System.out.print("Email address : ");
-						sportsequipment.email= input.next();
+						String email= input.next();
+						sportsequipment.setEmail(email);
 					}
 					else if (num == 4) {
 						System.out.print("Phone number : ");
-						sportsequipment.phone= input.next();
+						String phone= input.next();
+						sportsequipment.setPhone(phone);
 					}
 					else {
 						continue;
@@ -88,7 +106,7 @@ public class SportsEquipmentManager {
 	public void viewsportsequipments() {
 		//		System.out.print("Sports Equipment ID : ");
 		//		int SEId= input.nextInt();
-		System.out.println("# of registered sportsequipments : " + SportsEquipment.numSportsEquipmnetRegistered);
+		System.out.println("# of registered sportsequipments : " + sportsequipments.size());
 		for(int i = 0; i < sportsequipments.size(); i++) {
 			sportsequipments.get(i).printInfo();
 		}
