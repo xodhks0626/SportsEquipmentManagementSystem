@@ -12,6 +12,10 @@ public class SportsEquipment {
 
 	public SportsEquipment() {
 	}
+	
+	public SportsEquipment(SportsEquipmentKind kind) {
+		this.kind = kind;
+	}
 
 	public SportsEquipment(String name, int id) {
 		this.name = name;
@@ -19,6 +23,14 @@ public class SportsEquipment {
 	}
 
 	public SportsEquipment(String name, int id, String mail, String phone) {
+		this.name = name;
+		this.id = id;
+		this.email = email;
+		this.phone = phone;
+	}
+	
+	public SportsEquipment(SportsEquipmentKind kind, String name, int id, String mail, String phone) {
+		this.kind = kind;
 		this.name = name;
 		this.id = id;
 		this.email = email;
@@ -64,9 +76,25 @@ public class SportsEquipment {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
+	
 	public void printInfo() {
-		System.out.println("name : " + name + " id : " + id + " email : " + email + " phone : " + phone);
+		String skind = "none";
+		switch(this.kind){
+		case arms:
+			skind = "Arms";
+			break;
+		case chest:
+			skind = "Chest";
+			break;
+		case core:
+			skind = "Core";
+			break;
+		case legs:
+			skind = "Legs";
+			break;
+		default:
+		}
+		System.out.println("kind" + skind + " name : " + name + " id : " + id + " email : " + email + " phone : " + phone);
 	}
 	
 	public void getUserInput(Scanner input) {

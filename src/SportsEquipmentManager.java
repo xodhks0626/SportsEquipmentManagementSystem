@@ -2,7 +2,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import sportsequipment.ChestSportsEquipment;
+import sportsequipment.LegsSportsEquipment;
 import sportsequipment.SportsEquipment;
+import sportsequipment.SportsEquipmentKind;
 
 public class SportsEquipmentManager {
 	ArrayList<SportsEquipment> sportsequipments = new ArrayList<SportsEquipment>();
@@ -18,22 +20,29 @@ public class SportsEquipmentManager {
 		while (kind != 1 && kind !=2) {
 			System.out.println("1. for arms sportsequipment");
 			System.out.println("2. for chest sportsequipment");
-			System.out.print("Select num for SportsEquipment Kind between 1 and 2 : ");
+			System.out.println("3. for Legs sportsequipment");
+			System.out.print("Select num 1, 2 or 3 for SportsEquipment Kind : ");
 			kind = input.nextInt();
 			if(kind == 1) {
-				sportsequipment = new SportsEquipment();
+				sportsequipment = new SportsEquipment(SportsEquipmentKind.arms);
 				sportsequipment.getUserInput(input);
 				sportsequipments.add(sportsequipment);
 				break;
 			}
 			else if (kind == 2) {
-				sportsequipment = new ChestSportsEquipment();
+				sportsequipment = new ChestSportsEquipment(SportsEquipmentKind.chest);
+				sportsequipment.getUserInput(input);
+				sportsequipments.add(sportsequipment);
+				break;
+			}
+			else if (kind == 3) {
+				sportsequipment = new LegsSportsEquipment(SportsEquipmentKind.legs);
 				sportsequipment.getUserInput(input);
 				sportsequipments.add(sportsequipment);
 				break;
 			}
 			else {
-				System.out.print("Select num for SportsEquipment Kind between 1 and 2 : ");
+				System.out.print("Select num for SportsEquipment Kind between 1 and 3 : ");
 			}
 		}
 	}
