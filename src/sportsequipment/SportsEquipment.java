@@ -2,17 +2,17 @@ package sportsequipment;
 
 import java.util.Scanner;
 
-public class SportsEquipment {
+public abstract class SportsEquipment implements SportsEquipmentInput {
 	protected SportsEquipmentKind kind = SportsEquipmentKind.arms;
 	protected String name;
 	protected int id;
 	protected String email;
 	protected String phone;
-	
+
 
 	public SportsEquipment() {
 	}
-	
+
 	public SportsEquipment(SportsEquipmentKind kind) {
 		this.kind = kind;
 	}
@@ -22,21 +22,21 @@ public class SportsEquipment {
 		this.id = id;
 	}
 
-	public SportsEquipment(String name, int id, String mail, String phone) {
+	public SportsEquipment(String name, int id, String email, String phone) {
 		this.name = name;
 		this.id = id;
 		this.email = email;
 		this.phone = phone;
 	}
-	
-	public SportsEquipment(SportsEquipmentKind kind, String name, int id, String mail, String phone) {
+
+	public SportsEquipment(SportsEquipmentKind kind, String name, int id, String email, String phone) {
 		this.kind = kind;
 		this.name = name;
 		this.id = id;
 		this.email = email;
 		this.phone = phone;
 	}
-	
+
 	public SportsEquipmentKind getKind() {
 		return kind;
 	}
@@ -76,8 +76,34 @@ public class SportsEquipment {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+	public abstract void printInfo();
 	
-	public void printInfo() {
+	public void setSportsEquipmentID(Scanner input) {
+		System.out.print("Sports Equipment ID : ");
+		int id = input.nextInt();
+		this.setId(id);
+	}
+
+	public void setSportsEquipmentName(Scanner input) {
+		System.out.print("Sports Equipment name : ");
+		String name= input.next();
+		this.setName(name);
+	}
+
+	public void setSportsEquipmentEmail(Scanner input) {
+		System.out.print("Email address : ");
+		String email= input.next();
+		this.setEmail(email);
+	}
+
+	public void setSportsEquipmentPhone(Scanner input) {
+		System.out.print("Phone number : ");
+		String phone= input.next();
+		this.setPhone(phone);
+	}
+	
+	public String getKindString() {
 		String skind = "none";
 		switch(this.kind){
 		case arms:
@@ -94,26 +120,6 @@ public class SportsEquipment {
 			break;
 		default:
 		}
-		System.out.println("kind" + skind + " name : " + name + " id : " + id + " email : " + email + " phone : " + phone);
-	}
-	
-	public void getUserInput(Scanner input) {
-		System.out.print("Sports Equipment ID : ");
-		int id = input.nextInt();
-		this.setId(id);
-		
-		System.out.print("Sports Equipment name : ");
-		String name= input.next();
-		this.setName(name);
-		
-		String buf = input.nextLine();
-		
-		System.out.print("Email address : ");
-		String email= input.next();
-		this.setEmail(email);
-		
-		System.out.print("Phone number : ");
-		String phone= input.next();
-		this.setPhone(phone);
+		return skind;
 	}
 }
