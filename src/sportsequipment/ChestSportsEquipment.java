@@ -3,7 +3,7 @@ package sportsequipment;
 import java.util.Scanner;
 
 public class ChestSportsEquipment extends CLSportsEquipment {
-	
+
 	public ChestSportsEquipment(SportsEquipmentKind kind) {
 		super(kind);
 	}

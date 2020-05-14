@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import sportsequipment.ChestSportsEquipment;
@@ -19,32 +20,41 @@ public class SportsEquipmentManager {
 	public void addsportsequipment() {
 		int kind = 0;
 		SportsEquipmentInput sportsequipmentInput;
-		while (kind != 1 && kind !=2) {
-			System.out.println("1. for arms sportsequipment");
-			System.out.println("2. for chest sportsequipment");
-			System.out.println("3. for Legs sportsequipment");
-			System.out.print("Select num 1, 2 or 3 for SportsEquipment Kind : ");
-			kind = input.nextInt();
-			if(kind == 1) {
-				sportsequipmentInput = new CoreSportsEquipment(SportsEquipmentKind.arms);
-				sportsequipmentInput.getUserInput(input);
-				sportsequipments.add(sportsequipmentInput);
-				break;
+		while (kind < 1 || kind > 3) {
+			try {
+				System.out.println("1. for arms sportsequipment");
+				System.out.println("2. for chest sportsequipment");
+				System.out.println("3. for Legs sportsequipment");
+				System.out.println("Select num 1, 2 or 3 for SportsEquipment Kind : ");
+				kind = input.nextInt();
+				if(kind == 1) {
+					sportsequipmentInput = new CoreSportsEquipment(SportsEquipmentKind.arms);
+					sportsequipmentInput.getUserInput(input);
+					sportsequipments.add(sportsequipmentInput);
+					break;
+				}
+				else if (kind == 2) {
+					sportsequipmentInput = new ChestSportsEquipment(SportsEquipmentKind.chest);
+					sportsequipmentInput.getUserInput(input);
+					sportsequipments.add(sportsequipmentInput);
+					break;
+				}
+				else if (kind == 3) {
+					sportsequipmentInput = new LegsSportsEquipment(SportsEquipmentKind.legs);
+					sportsequipmentInput.getUserInput(input);
+					sportsequipments.add(sportsequipmentInput);
+					break;
+				}
+				else {
+					System.out.println("Select num for SportsEquipment Kind between 1 and 3 : ");
+				}
 			}
-			else if (kind == 2) {
-				sportsequipmentInput = new ChestSportsEquipment(SportsEquipmentKind.chest);
-				sportsequipmentInput.getUserInput(input);
-				sportsequipments.add(sportsequipmentInput);
-				break;
-			}
-			else if (kind == 3) {
-				sportsequipmentInput = new LegsSportsEquipment(SportsEquipmentKind.legs);
-				sportsequipmentInput.getUserInput(input);
-				sportsequipments.add(sportsequipmentInput);
-				break;
-			}
-			else {
-				System.out.print("Select num for SportsEquipment Kind between 1 and 3 : ");
+			catch(InputMismatchException e) {
+				System.out.println("Please put an integer between 1 and 3!");
+				if (input.hasNext()) {
+					input.next();
+				}
+				kind = -1;
 			}
 		}
 	}
@@ -54,7 +64,7 @@ public class SportsEquipmentManager {
 		int index = findIndex(SEId);
 		removefromSportsEquipment(index, SEId);
 	}
-	
+
 	public int findIndex(int SEId) {
 		int index = -1;
 		for(int i = 0; i < sportsequipments.size(); i++) {
@@ -65,7 +75,7 @@ public class SportsEquipmentManager {
 		}
 		return index;
 	}
-	
+
 	public int removefromSportsEquipment(int index, int SEId) {
 		if(index >= 0) {
 			sportsequipments.remove(index);
