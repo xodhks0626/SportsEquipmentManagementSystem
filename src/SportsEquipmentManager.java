@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -5,13 +6,17 @@ import java.util.Scanner;
 import sportsequipment.ChestSportsEquipment;
 import sportsequipment.CoreSportsEquipment;
 import sportsequipment.LegsSportsEquipment;
-import sportsequipment.SportsEquipment;
 import sportsequipment.SportsEquipmentInput;
 import sportsequipment.SportsEquipmentKind;
 
-public class SportsEquipmentManager {
+public class SportsEquipmentManager implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4184970770292520085L;
+	
 	ArrayList<SportsEquipmentInput> sportsequipments = new ArrayList<SportsEquipmentInput>();
-	Scanner input;
+	transient Scanner input; //저장하고 싶지 않다.
 
 	SportsEquipmentManager(Scanner input){
 		this.input = input;
@@ -135,5 +140,9 @@ public class SportsEquipmentManager {
 		System.out.println("4. Edit Phone");
 		System.out.println("5. Exit");
 		System.out.println("1. Select one number between 1 - 5 :");
+	}
+	
+	public void setScanner(Scanner input) {
+		this.input = input;
 	}
 }

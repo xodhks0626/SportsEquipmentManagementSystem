@@ -1,10 +1,16 @@
 package sportsequipment;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 import exception.EmailFormatException;
 
-public abstract class SportsEquipment implements SportsEquipmentInput {
+public abstract class SportsEquipment implements SportsEquipmentInput, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2356715405296704137L;
+	
 	protected SportsEquipmentKind kind = SportsEquipmentKind.arms;
 	protected String name;
 	protected int id;
