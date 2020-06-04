@@ -1,13 +1,17 @@
 package gui;
 
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class SportsEquipmentViewer extends JFrame {
+public class SportsEquipmentViewer extends JPanel {
 
-	public SportsEquipmentViewer() {
+	WindowFrame frame;
+	
+	public SportsEquipmentViewer(WindowFrame frame) {
+		this.frame = frame;
+		
 		DefaultTableModel model = new DefaultTableModel();
 		model.addColumn("Id");
 		model.addColumn("Name");
@@ -17,11 +21,7 @@ public class SportsEquipmentViewer extends JFrame {
 		JTable table = new JTable(model);
 		JScrollPane sp = new JScrollPane(table);
 		
-		this.add(sp);
-		this.setSize(300, 300);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);
-		
+		this.add(sp);		
 	}
 
 }
