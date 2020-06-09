@@ -1,3 +1,4 @@
+package manager;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -6,6 +7,7 @@ import java.util.Scanner;
 import sportsequipment.ChestSportsEquipment;
 import sportsequipment.CoreSportsEquipment;
 import sportsequipment.LegsSportsEquipment;
+import sportsequipment.SportsEquipment;
 import sportsequipment.SportsEquipmentInput;
 import sportsequipment.SportsEquipmentKind;
 
@@ -130,6 +132,14 @@ public class SportsEquipmentManager implements Serializable {
 		for(int i = 0; i < sportsequipments.size(); i++) {
 			sportsequipments.get(i).printInfo();
 		}
+	}
+	
+	public int size() {
+		return sportsequipments.size();
+	}
+	
+	public SportsEquipmentInput get(int index) {
+		return (SportsEquipment) sportsequipments.get(index);
 	}
 
 	public void showEditMenu() {

@@ -3,20 +3,28 @@ package gui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import manager.SportsEquipmentManager;
+
 public class WindowFrame extends JFrame {
+	
+	SportsEquipmentManager sportsequipmentManager;
+	
 	MenuSelection menuselection;
 	SportsEquipmentAdder SEAdder;
 	SportsEquipmentViewer SEViewer;
 	
-	public WindowFrame() {
-		this.menuselection = new MenuSelection(this);
-		this.SEAdder = new SportsEquipmentAdder(this);
-		this.SEViewer = new SportsEquipmentViewer(this);
-		
+	
+	public WindowFrame(SportsEquipmentManager sportsequipmentManager) {
 		this.setSize(500,300);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("My Frame");
 		
-		this.setupPanel(menuselection);
+		this.sportsequipmentManager = sportsequipmentManager;
+		this.menuselection = new MenuSelection(this);
+		this.SEAdder = new SportsEquipmentAdder(this);
+		this.SEViewer = new SportsEquipmentViewer(this, this.sportsequipmentManager);
+		
+		this.add(menuselection);
 		
 		this.setVisible(true); // ÇÊ¼ö
 	}

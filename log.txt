@@ -1,4 +1,0 @@
-5월 21, 2020 8:15:44 오후 log.EventLogger log
-정보: add a sportsequipment
-5월 21, 2020 8:15:49 오후 log.EventLogger log
-정보: edit a list of sportsequipment
